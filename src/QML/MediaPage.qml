@@ -3,16 +3,16 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import Backend
+import BackendAsio
 
 //окно  управления звкуом (смена песни и тд)
 Item{
     id:mediaPage
 
     Connections {
-        target: Backend
+        target: BackendAsio
         function onDataChanged() {
-            volumeSlider.value = Backend.deviceData["currentVolume"]
+            volumeSlider.value = BackendAsio.deviceData["currentVolume"]
         }
     }
 
@@ -48,7 +48,7 @@ Item{
         }
 
         Text{
-            text: Backend.deviceData["currMusicName"] || "Нет трека"
+            text: BackendAsio.deviceData["currMusicName"] || "Нет трека"
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 23
@@ -58,7 +58,7 @@ Item{
             Layout.maximumWidth: parent.width*0.95
         }
         Text {
-            text: Backend.deviceData["currMusicArtist"] || ""
+            text: BackendAsio.deviceData["currMusicArtist"] || ""
             color: "#CFCFD3"
             font.pixelSize: 15
             Layout.alignment: Qt.AlignHCenter
@@ -97,7 +97,7 @@ Item{
                     color: "#CFCFD3"
                 }
                 onClicked:{
-                    Backend.command('previous')
+                    BackendAsio.command('previous')
                 }
             }
 
@@ -115,7 +115,7 @@ Item{
 
                 Image {
                     id: pauseImage
-                    source: Backend.deviceData["isPlayMusic"]
+                    source: BackendAsio.deviceData["isPlayMusic"]
                                 ? "qrc:/icons/pause.png"
                                 : "qrc:/icons/play.png"
                     width: 30
@@ -128,7 +128,7 @@ Item{
                     color: "#09090B"
                 }
                 onClicked:{
-                    Backend.command('play_pause')
+                    BackendAsio.command('play_pause')
                 }
             }
             Button {
@@ -157,7 +157,7 @@ Item{
                 }
 
                 onClicked:{
-                    Backend.command('next')
+                    BackendAsio.command('next')
                 }
             }
         }
@@ -202,13 +202,13 @@ Item{
                     id: volumeSlider
                     from: 0
                     to: 1
-                    value: Backend.deviceData["currentVolume"]
+                    value: BackendAsio.deviceData["currentVolume"]
 
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter
 
                     onMoved: {
-                        Backend.command('volume',volumeSlider.value)
+                        BackendAsio.command('volume',volumeSlider.value)
                     }
                 }
 

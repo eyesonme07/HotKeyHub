@@ -4,7 +4,6 @@ project(HotKeyHub VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
 if(ANDROID)
     set(BOOST_ROOT "C:/Boost/ndk_27c_boost_1.87.0/ndk_27c_boost_1.87.0")
     set(BOOST_INCLUDEDIR "${BOOST_ROOT}/include")
@@ -12,12 +11,9 @@ elseif(WIN32)
     set(BOOST_ROOT "C:/Boost/boost_1_90_0")
 endif()
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick Sql)
 
 qt_standard_project_setup(REQUIRES 6.8)
-
-
-
 
 qt_add_executable(appHotKeyHub
     src/cpp/main.cpp
@@ -29,9 +25,9 @@ qt_add_qml_module(appHotKeyHub
         src/QML/Main.qml
     SOURCES
         src/cpp/client.cpp
-        src/cpp/backend.cpp
+        src/cpp/backendasio.cpp
         src/header/client.h
-        src/header/backend.h
+        src/header/backendasio.h
         QML_FILES src/QML/StartPane.qml
         QML_FILES src/QML/EnterIpPane.qml
         QML_FILES src/QML/MainWindowPane.qml
@@ -40,6 +36,17 @@ qt_add_qml_module(appHotKeyHub
         QML_FILES src/QML/MediaPage.qml
         QML_FILES src/QML/TouchpadPage.qml
         QML_FILES src/QML/HotkeyPage.qml
+        QML_FILES src/QML/HotKeyItem.qml
+        SOURCES src/header/database.h
+        SOURCES src/cpp/database.cpp
+        SOURCES src/header/hotkeydatabase.h
+        SOURCES src/cpp/hotkeydatabase.cpp
+        SOURCES src/header/backenddatabase.h
+        SOURCES src/cpp/backenddatabase.cpp
+        SOURCES src/header/backend.h
+        SOURCES src/cpp/backend.cpp
+        RESOURCES src/icon/message-question.png
+        QML_FILES src/QML/GuideSection.qml
 )
 
 qt_add_resources(appHotKeyHub "icons"
@@ -64,21 +71,15 @@ qt_add_resources(appHotKeyHub "icons"
         src/icon/play-pause.png
         src/icon/play.png
         src/icon/pause.png
+        src/icon/message-question.png
+        src/icon/trash.png
 )
 
 if(ANDROID)
     set_target_properties(appHotKeyHub PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
-
-        QT_ANDROID_ABIS "armeabi-v7a;arm64-v8a;x86_64"
-        QT_ANDROID_MIN_SDK_VERSION 24
-        QT_ANDROID_TARGET_SDK_VERSION 35
-        QT_ANDROID_APP_NAME "HotKeyHub"
-        QT_ANDROID_VERSION_NAME "1.0.0"
-        QT_ANDROID_VERSION_CODE 1
     )
 endif()
-
 
 set_target_properties(appHotKeyHub PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER com.example.hotkeyhub
@@ -98,6 +99,9 @@ endif()
 
 target_link_libraries(appHotKeyHub
     PRIVATE Qt6::Quick
+)
+target_link_libraries(appHotKeyHub
+    PRIVATE Qt6::Sql
 )
 
 include(GNUInstallDirs)

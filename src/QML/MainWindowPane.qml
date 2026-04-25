@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import Backend
+import BackendAsio
 
 //тут оснновной TabBar и основное окно
 Page{
@@ -51,7 +51,7 @@ Page{
             anchors.verticalCenter: pcRec.verticalCenter
 
             Text {
-                text: Backend.deviceData["pcName"]
+                text: BackendAsio.deviceData["pcName"]
                 color: "White"
                 font.bold: true
                 font.pixelSize: 17

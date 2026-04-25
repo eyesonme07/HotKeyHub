@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import Backend
+import BackendAsio
 
 //окно подключения
 Pane {
@@ -11,7 +11,7 @@ Pane {
     property bool isRunning: false
 
     function connectStatus() {
-        var status = Backend.isConnected()
+        var status = BackendAsio.isConnected()
         console.log("connectStatus count:", count, "status:", status)
 
         if (count > 10) {

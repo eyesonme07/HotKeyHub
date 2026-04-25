@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import Backend
+import BackendAsio
 
 //тут пользователь пишет ip для подключения
 Pane{
@@ -142,7 +142,7 @@ Pane{
                 enabled: false
 
                 onClicked: {
-                    Backend.connectClient(ipField.text)
+                    BackendAsio.connectClient(ipField.text)
                     var pane = connectComponent.createObject(mainStackView)
                     mainStackView.push(pane)
                 }

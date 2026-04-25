@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import Backend
+import BackendAsio
 
 //окно управление мышкой
 Item {
@@ -19,8 +19,6 @@ Item {
             font.pixelSize: 23
             color: "White"
         }
-
-
 
         Rectangle {
             id:touchpad
@@ -76,7 +74,7 @@ Item {
                         let dy = point.position.y - lastScrollY
 
                         if (Math.abs(dy) > 2) {
-                            Backend.scroll(-dy * scrollSensitivity)
+                            BackendAsio.scroll(-dy * scrollSensitivity)
                             lastScrollY = point.position.y
                         }
                     }
@@ -85,7 +83,7 @@ Item {
                         let dy = point.position.y - lastMouseY
 
                         if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
-                            Backend.moveMouse(dx * sensitivity, dy * sensitivity)
+                            BackendAsio.moveMouse(dx * sensitivity, dy * sensitivity)
 
                             lastMouseX = point.position.x
                             lastMouseY = point.position.y
@@ -111,7 +109,7 @@ Item {
                     border.color: "#222225"
                 }
                 onClicked: {
-                    Backend.command("lButton")
+                    BackendAsio.command("lButton")
                 }
             }
 
@@ -127,7 +125,7 @@ Item {
                     border.color: "#222225"
                 }
                 onClicked:{
-                    Backend.command("rButton")
+                    BackendAsio.command("rButton")
                 }
             }
         }
