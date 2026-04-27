@@ -15,7 +15,7 @@ Item {
 
         Text {
             Layout.alignment: Qt.AlignLeft
-            text: "Мышь и клавиатура"
+            text: "Мышь"
             font.pixelSize: 23
             color: "White"
         }

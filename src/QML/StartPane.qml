@@ -71,7 +71,7 @@ Pane{
                 icon.height: 15
 
                 onClicked:{
-                    Qt.openUrlExternally('https://github.com/eyesonme07/HotKeyHub-Host')
+                    Qt.openUrlExternally('https://github.com/eyesonme07/HotKeyHub-Host/releases/tag/cpp')
                 }
             }
             Button{

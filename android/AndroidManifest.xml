@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.qtproject.hotkeyapp" android:installLocation="auto" android:versionCode="1" android:versionName="1.0.0">
-    <!-- %%INSERT_PERMISSIONS -->
-    <!-- %%INSERT_FEATURES -->
+
+
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true"/>
-    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="HotKeyHub" android:icon="@drawable/icon" android:requestLegacyExternalStorage="true" android:allowBackup="true" android:fullBackupOnly="false">
+    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="HotKeyHub" android:icon="@drawable/icon" android:allowBackup="true" android:fullBackupOnly="false">
         <activity android:name="org.qtproject.qt.android.bindings.QtActivity" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:label="HotKeyHub\" android:launchMode="singleTop" android:screenOrientation="portrait" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -17,4 +17,7 @@
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/qtprovider_paths"/>
         </provider>
     </application>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
