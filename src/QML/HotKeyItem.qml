@@ -36,7 +36,7 @@ Rectangle {
 
         var map = {}
 
-        map["command"] = isPress?"pressKey":"releaseKey"
+        map["command"] = "clickKey"
         map["keys"] = length
 
         for(var i = 0;i<length;++i){
@@ -47,12 +47,8 @@ Rectangle {
 
     MouseArea{
         anchors.fill: parent
-
-        onPressed:{
-            clickKey(true)
-        }
-        onReleased: {
-            clickKey(false)
+        onClicked:{
+            clickKey()
         }
     }
 
