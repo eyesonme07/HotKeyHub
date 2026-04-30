@@ -181,20 +181,21 @@ Item{
 
                 spacing: 12
 
-                Image {
-                    id: volumeImage
-                    source: "qrc:/icons/volume-2.png"
-
+                Item{
                     Layout.preferredWidth: 22
                     Layout.preferredHeight: 22
                     Layout.alignment: Qt.AlignVCenter
 
-                    fillMode: Image.PreserveAspectFit
-
-                    ColorOverlay {
+                    Image {
+                        id: volumeImage
                         anchors.fill: parent
-                        source: volumeImage
-                        color: "#CFCFD3"
+                        source: "qrc:/icons/volume-2.png"
+                        fillMode: Image.PreserveAspectFit
+
+                        layer.enabled: true
+                        layer.effect: ColorOverlay {
+                                color: "#CFCFD3"
+                            }
                     }
                 }
 

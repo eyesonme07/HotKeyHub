@@ -113,6 +113,23 @@ Item {
                 }
             }
 
+            Button{
+                Layout.fillWidth: true
+                Layout.minimumHeight: 70
+                Layout.maximumWidth: 40
+
+                background: Rectangle {
+                    radius: 14
+                    color: "#0F0F12"
+                    border.width: 1
+                    border.color: "#222225"
+                }
+
+                onClicked:{
+                    BackendAsio.command("cButton")
+                }
+            }
+
             Button {
                 text: "Правая"
                 Layout.fillWidth: true
